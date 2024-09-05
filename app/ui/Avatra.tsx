@@ -3,7 +3,7 @@ import Image from "next/image";
 export default function Avatra() {
   return (
     <Image 
-    src={"/images/avatra.jpg"}
+    src={"/my-resume/images/avatra.jpg"}
     alt="My Avatra"
     width={100}
     height={120}
