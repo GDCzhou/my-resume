@@ -1,4 +1,3 @@
-import Image from "next/image";
 import Header from "./ui/Header";
 import Skill from "./ui/Skill";
 import Experience from "./ui/Experience";
