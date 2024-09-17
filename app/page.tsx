@@ -6,7 +6,7 @@ import Education from "./ui/Educat";
 
 export default function Resume() {
   return (
-    <div className="resume w-[21cm] min-h-[29.7cm] mx-auto  bg-white px-[2em] py-[2rem] ">
+    <div className="resume w-[21cm] min-h-[29.7cm] mx-auto my-[2rem] bg-white px-[2em] py-[2rem] ">
       <Header />
       <Skill />
       <Experience />

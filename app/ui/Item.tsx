@@ -17,7 +17,7 @@ export default function Item() {
 function Item1() {
   return (
     <div>
-      <Title2 time="2022.02-2022.08" post >vue通用后台管理系统</Title2>
+      <Title2  post >vue通用后台管理系统</Title2>
       <h4>项目简介：为一个通用的后台管理系统开发前端，支持多种业务模块（如用户管理、权限管理、商品管理、订单管理、数据统计等）。</h4>
       <p>技术栈：vue3、pinia、axios、element-plus</p>
       <ol className="list-decimal list-inside">
@@ -55,7 +55,7 @@ function Item2() {
 function Item3() {
   return (
     <div>
-      <Title2 time="2023.09-2024.01" post >通用数据大屏可视化</Title2>
+      <Title2  post >通用数据大屏可视化</Title2>
       <h4>项目简介：为公司开发一个数据大屏可视化系统，包含 11 种不同的可视化图表，展示了公司多维度的业务数据，包括区域分布、风险评估、关键词分析等。</h4>
       <p>技术栈：Vue3、Echarts、Axios、Git</p>
       <ul className="list-decimal list-inside">
