@@ -10,7 +10,7 @@ export default function Header() {
         <p className="mb-2">前端工程师 | 3年</p>
         <p>电话: <strong>19397705570</strong> 邮箱: <strong>996078450@qq.com</strong></p>
       </div>
-      <Avatra />
+      {/* <Avatra /> */}
     </header>
   )
 }

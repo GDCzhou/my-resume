@@ -25,7 +25,6 @@ function Item1() {
         <li>动态权限路由：实现基于用户角色的动态路由权限控制，确保不同角色只能访问相应页面。减少了管理系统中的权限漏洞，提高了系统安全性</li>
         <li> 自定义权限指令：封装了 v-permission 自定义指令，实现对页面按钮级别的权限控制，提升了前端的灵活性和可扩展性。</li>
         <li>二次封装 Axios：对 Axios 进行了二次封装，统一管理 API 请求和错误处理逻辑，简化了后续开发流程，并提高了代码可维护性。</li>
-        <li>用户引导功能：使用 driver.js 实现了新手引导功能，提升了用户对系统的理解和操作效率，缩短了新用户的上手时间。</li>
       </ol>
     </div>
     
@@ -36,12 +35,9 @@ function Item1() {
 function Item2() {
   return (
     <div>
-      <Title2 time="2022.02-2022.08" post >高仿ELementUI组件库</Title2>
+      <Title2 post address="https://gdczhou.github.io/zm-element" >UI组件库</Title2>
       <h4>项目简介：基于 Vue3 和 TypeScript 实现了一个高仿 Element UI 的组件库，采用 Monorepo 架构管理多个包，提供了一套轻量级、高性能的 UI 组件。</h4>
       <p>技术栈: Vue3、TypeScript、Vite、Monorepo</p>
-      <ul className="list-decimal list-inside">
-        <h5>实现的组件: Loading、 Message、 MessageBox、Collapse、 Dropdown、Alert、Tooltip、Form 等</h5>
-      </ul>
       <ol className="list-decimal list-inside">
         <h5>技术亮点:</h5>
         <li>组件按需加载：实现了组件按需引入，减少了打包体积，使得整体性能提升约 20%，用户体验显著提升。</li>
@@ -70,8 +66,7 @@ function Item3() {
         <li>高效图表渲染：通过优化 Echarts 配置，减少了图表加载时间约 30%，提升了大数据量下的渲染性能。</li>
         <li>动态数据更新：使用 watch 生命周期钩子监听数据变化，实现了图表的实时动态渲染，增强了系统的互动性和可用性。</li>
         <li>复杂图表设计：完成了双环形图、雷达图等复杂图表的实现，解决了数据维度复杂时的展示难题，帮助管理层直观分析数据。</li>
-        <li>词云图和数字跳动：利用 echarts-wordcloud 和 countUp.js，实现了关键词动态展示和数字跳动效果，增加了用户交互的趣味性。</li>
-        <li>快速打包部署：通过 Vite 快速打包项目，并利用 GitHub Pages 实现了无需服务器的在线预览，缩短了项目交付周期。</li>
+        {/* <li>词云图和数字跳动：利用 echarts-wordcloud 和 countUp.js，实现了关键词动态展示和数字跳动效果，增加了用户交互的趣味性。</li> */}
       </ol>
     </div>
   )

@@ -15,7 +15,7 @@ export default function Experience() {
 function ExperienceItem() {
   return (
     <div>
-      <Title2 time="2022.02-2024.01">北京神州安付科技股份有限公司</Title2>
+      <Title2 time="2022.02-2024.01">环球数码科技有限公司</Title2>
       <ol className="list-decimal list-inside">
         <li className="mb-1">
           负责公司产品的前端开发任务，与后端开发⼯程师共同完成设计效果，对新项⽬进⾏配合开发，对⽼项⽬进⾏ 优化、迭代更新，添加新功能。以Vue3交互为主完成参与公司模块设计。
@@ -34,7 +34,7 @@ function ExperienceItem() {
 function ExperienceItem2() {
   return (
     <div>
-      <Title2 time="2024.03-2024.07">北京觅机科技有限公司</Title2>
+      <Title2 time="2024.03-2024.07">环球数码科技有限公司</Title2>
       <ul className="list-decimal list-inside">
         <li>
           负责公司产品的前端开发任务，与后端开发⼯程师共同完成设计效果，对新项⽬进⾏配合开发，对⽼项⽬进⾏ 优化、迭代更新，添加新功能。以Vue3交互为主完成参与公司模块设计。
