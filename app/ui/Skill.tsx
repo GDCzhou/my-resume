@@ -9,7 +9,8 @@ export default function Skill() {
     '熟练掌握Echarts等可视化工具',
     '熟练掌握ES6、ES7,CSS预处理器sass scss less',
     '熟练掌握vite,webpack等构建工具',
-    '熟练使用Node.js，搭建后台api接口',
+    '熟练使用Node.js，express搭建后台服务',
+    '熟练使用git进行版本控制'
   ]
   return (
     <div>
