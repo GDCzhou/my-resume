@@ -5,33 +5,60 @@ import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import DownloadButton from './components/DownloadButton';
 
-// 自定义 Markdown 组件映射，复刻原项目 A4 简历样式
+// 参照原始 PDF 简历布局
 const markdownComponents = {
-  h1: ({ children }: { children?: React.ReactNode }) => (
-    <h1 className="text-3xl font-bold mb-5">{children}</h1>
-  ),
+  // 二级标题：左边框 + 灰色背景，与正文内容对齐（不超出容器）
   h2: ({ children }: { children?: React.ReactNode }) => (
-    <h2 className="title text-xl font-bold my-8 border-l-4 p-4 border-black bg-gray-200 -mx-4">
+    <h2 className="title text-base font-bold my-5 py-1.5 pl-3 pr-0 border-l-4 border-black bg-gray-200">
       {children}
     </h2>
   ),
-  h3: ({ children }: { children?: React.ReactNode }) => (
-    <h3 className="text-lg font-bold my-3">{children}</h3>
-  ),
+
+  // 三级标题：工作经历/项目 — 左中右三列分布
+  h3: ({ children }: { children?: React.ReactNode }) => {
+    const childArray = Array.isArray(children) ? children : [children];
+    let companyName = '';
+    let position = '';
+    let time = '';
+
+    childArray.forEach((child, idx) => {
+      if (typeof child === 'string') {
+        if (idx === 0) {
+          companyName = child.trim();
+        } else if (child.includes('|')) {
+          position = child.split('|')[1]?.trim() || '';
+        }
+      } else if (child && typeof child === 'object' && 'props' in child) {
+        const el = child as { props?: { children?: React.ReactNode } };
+        if (el.props?.children) {
+          time = String(el.props.children);
+        }
+      }
+    });
+
+    return (
+      <h3 className="text-sm font-bold my-2 flex justify-between items-baseline gap-4">
+        <span>{companyName}</span>
+        <span className="font-normal text-sm">{position}</span>
+        <span className="font-normal text-sm whitespace-nowrap shrink-0">{time}</span>
+      </h3>
+    );
+  },
+
   h4: ({ children }: { children?: React.ReactNode }) => (
-    <h4 className="font-semibold my-2">{children}</h4>
+    <h4 className="text-sm font-semibold my-1">{children}</h4>
   ),
   h5: ({ children }: { children?: React.ReactNode }) => (
-    <h5 className="font-semibold mb-1">{children}</h5>
+    <h5 className="text-sm font-semibold mb-0.5">{children}</h5>
   ),
   p: ({ children }: { children?: React.ReactNode }) => (
-    <p className="my-1 leading-7">{children}</p>
+    <p className="text-sm leading-relaxed my-1">{children}</p>
   ),
   ul: ({ children }: { children?: React.ReactNode }) => (
-    <ul className="list-disc pl-6 my-2 space-y-1">{children}</ul>
+    <ul className="list-disc pl-5 my-1 space-y-0.5 text-sm">{children}</ul>
   ),
   ol: ({ children }: { children?: React.ReactNode }) => (
-    <ol className="list-decimal list-inside my-2 space-y-1">{children}</ol>
+    <ol className="list-decimal pl-5 my-1 space-y-0.5 text-sm">{children}</ol>
   ),
   li: ({ children }: { children?: React.ReactNode }) => (
     <li className="leading-relaxed">{children}</li>
@@ -40,12 +67,10 @@ const markdownComponents = {
     <strong>{children}</strong>
   ),
   a: ({ href, children }: { href?: string; children?: React.ReactNode }) => (
-    <a href={href} className="text-blue-600 underline" target="_blank" rel="noopener noreferrer">
-      {children}
-    </a>
+    <a href={href} target="_blank" rel="noopener noreferrer">{children}</a>
   ),
   table: ({ children }: { children?: React.ReactNode }) => (
-    <table className="w-full my-2 border-collapse">{children}</table>
+    <table className="w-full my-1 text-sm">{children}</table>
   ),
   thead: ({ children }: { children?: React.ReactNode }) => (
     <thead className="hidden">{children}</thead>
@@ -57,43 +82,35 @@ const markdownComponents = {
     <tr className="flex justify-between">{children}</tr>
   ),
   th: ({ children }: { children?: React.ReactNode }) => (
-    <th className="font-bold text-left py-1">{children}</th>
+    <th className="font-bold text-left py-0.5">{children}</th>
   ),
   td: ({ children }: { children?: React.ReactNode }) => (
-    <td className="py-1">{children}</td>
+    <td className="py-0.5">{children}</td>
   ),
 };
 
 export default async function ResumePage() {
-  // 读取 Markdown 文件（构建时 SSG 或请求时 ISR）
   const filePath = path.join(process.cwd(), 'content', 'resume.md');
   const raw = await fs.readFile(filePath, 'utf-8');
   const { data, content } = matter(raw);
 
   return (
     <div className="min-h-screen bg-[#eee] py-[2rem]">
-      {/* 下载按钮 - 打印时隐藏 */}
       <div className="no-print fixed top-6 right-6 z-50">
         <DownloadButton />
       </div>
 
-      {/* A4 简历容器 */}
       <article className="resume w-[21cm] min-h-[29.7cm] mx-auto bg-white px-[2em] py-[2rem] shadow-lg">
-        {/* 头部区域：从 frontmatter 渲染 */}
-        <header className="flex justify-between items-start">
+        {/* 头部 */}
+        <header className="flex justify-between items-start mb-4">
           <div>
-            <h1 className="text-3xl font-bold mb-5">{data.name}</h1>
-            <p className="my-2 leading-7">
-              {data.gender} | {data.age}岁
-            </p>
-            <p className="mb-2">
-              {data.position} | {data.years}
-            </p>
-            <p>
+            <h1 className="text-2xl font-bold mb-2">{data.name}</h1>
+            <p className="text-sm my-1">{data.gender} | {data.age}岁</p>
+            <p className="text-sm my-1">{data.position} | {data.years}</p>
+            <p className="text-sm my-1">
               电话: <strong>{data.phone}</strong> 邮箱: <strong>{data.email}</strong>
             </p>
           </div>
-          {/* 头像 */}
           {data.avatar && (
             <div
               className="w-[8rem] h-[10rem] bg-cover bg-[-53px] bg-no-repeat title shrink-0"
@@ -102,7 +119,7 @@ export default async function ResumePage() {
           )}
         </header>
 
-        {/* 正文：从 Markdown content 渲染 */}
+        {/* 正文 */}
         <ReactMarkdown remarkPlugins={[remarkGfm]} components={markdownComponents}>
           {content}
         </ReactMarkdown>
