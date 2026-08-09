@@ -4,7 +4,7 @@
 
 /* ===== 页面基础样式 ===== */
 body {
-  background-color: #eee;
+  background-color: transparent;
   margin: 0;
   padding: 0;
 }
@@ -15,57 +15,105 @@ body {
   print-color-adjust: exact;
 }
 
-/* ===== 打印样式（PDF 导出核心） ===== */
+/* ===== 屏幕模式：深色星空背景上的浅色文字 + 立体阴影 ===== */
+.resume {
+  /* 整体文字阴影 — 深色投影让文字浮起 */
+  text-shadow:
+    0 1px 3px rgba(0, 0, 0, 0.7),
+    0 0 8px rgba(0, 0, 0, 0.35),
+    0 0 16px rgba(0, 0, 0, 0.15);
+}
+
+.resume h1 {
+  /* 姓名大标题 — 更强的立体感 */
+  text-shadow:
+    0 2px 4px rgba(0, 0, 0, 0.8),
+    0 0 12px rgba(0, 0, 0, 0.45),
+    0 0 24px rgba(0, 0, 0, 0.2);
+}
+
+.resume h2 {
+  /* 二级标题 — 中等强度 */
+  text-shadow:
+    0 1px 3px rgba(0, 0, 0, 0.65),
+    0 0 8px rgba(0, 0, 0, 0.3);
+}
+
+.resume h3,
+.resume strong {
+  /* 三级标题和加粗文字 */
+  text-shadow:
+    0 1px 2px rgba(0, 0, 0, 0.6),
+    0 0 5px rgba(0, 0, 0, 0.25);
+}
+
+.resume p,
+.resume li,
+.resume td {
+  /* 正文 — 轻微阴影保持可读性 */
+  text-shadow:
+    0 1px 2px rgba(0, 0, 0, 0.55),
+    0 0 4px rgba(0, 0, 0, 0.18);
+}
+
+/* ===== 打印样式（PDF 导出）—— 强制纯白，去掉所有特效 ===== */
 @media print {
-  /* 隐藏非简历内容（工具栏等） */
   .no-print {
     display: none !important;
   }
 
-  /* 页面设置 — A4 无边距 */
   @page {
     size: A4;
     margin: 0;
   }
 
-  /* === 关键修复：消除所有灰色背景 === */
-  
-  /* 1. body 必须纯白 */
   html, body {
     background: white !important;
     padding: 0 !important;
     margin: 0 !important;
   }
 
-  /* 2. 外层容器（min-h-screen bg-[#eee]）必须纯白 + 去掉 padding */
   body > div {
     background: white !important;
     padding: 0 !important;
     margin: 0 !important;
   }
 
-  /* 3. A4 纸容器占满整页，无阴影 */
+  /* A4 纸容器 —— 强制纯白 + 去掉毛玻璃/圆角/阴影/文字阴影 */
   .resume {
     width: 210mm !important;
     min-height: 297mm !important;
-    margin: 0 !important;
+    margin: 0 auto !important;
     padding: 16mm 14mm !important;
     box-shadow: none !important;
+    border-radius: 0 !important;
+    border: none !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
     background: white !important;
   }
 
-  /* 防止内容跨页断裂 */
-  h2,
-  h3 {
-    break-after: avoid;
-  }
-  li,
-  tr,
-  figure {
-    break-inside: avoid;
+  /* 打印时去掉所有文字阴影 */
+  .resume,
+  .resume *,
+  .resume h1,
+  .resume h2,
+  .resume h3,
+  .resume strong,
+  .resume a {
+    text-shadow: none !important;
   }
 
-  /* 链接显示原始 URL */
+  /* h2 恢复不透明灰底 */
+  .resume h2 {
+    background-color: #e5e7eb !important;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  h2, h3 { break-after: avoid; }
+  li, tr, figure { break-inside: avoid; }
+
   a[href]::after {
     content: ' (' attr(href) ')';
     font-size: 0.8em;
@@ -76,7 +124,6 @@ body {
     text-decoration: none !important;
   }
 
-  /* 确保背景色和图片打印 */
   * {
     -webkit-print-color-adjust: exact !important;
     print-color-adjust: exact !important;
