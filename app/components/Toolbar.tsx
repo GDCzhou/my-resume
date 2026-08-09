@@ -1,11 +1,7 @@
 'use client';
 import { useState } from 'react';
-
-// ===== 简历配置 =====
-const RESUME_LIST = [
-  { type: 'frontend', label: '前端工程师', file: 'resume.md' },
-  { type: 'fullstack', label: '全栈开发工程师', file: 'resume-fullstack.md' },
-];
+import Link from 'next/link';
+import { RESUME_LIST } from '../config';
 
 // Icon 工具栏 — 悬停触发 + 精美下拉菜单
 export default function Toolbar({ currentType }: { currentType: string }) {
@@ -48,9 +44,9 @@ export default function Toolbar({ currentType }: { currentType: string }) {
                 {RESUME_LIST.map((resume) => {
                   const isActive = resume.type === currentType;
                   return (
-                    <a
+                    <Link
                       key={resume.type}
-                      href={`/?type=${resume.type}`}
+                      href={`/${resume.type}`}
                       className={`
                         flex items-center gap-3 px-4 py-2.5 mx-1.5 rounded-lg
                         transition-all duration-150 cursor-pointer
@@ -90,7 +86,7 @@ export default function Toolbar({ currentType }: { currentType: string }) {
                           <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                         </svg>
                       )}
-                    </a>
+                    </Link>
                   );
                 })}
               </div>

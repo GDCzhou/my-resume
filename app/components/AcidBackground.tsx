@@ -178,7 +178,8 @@ export default function AcidBackground() {
       });
 
       // 流星
-      if (!shootingStar && Math.random() < 0.002) spawnShootingStar();
+      // 流星 — 每帧 0.4% 概率生成一颗（约每 4 秒一颗）
+      if (!shootingStar && Math.random() < 0.008) spawnShootingStar();
 
       if (shootingStar?.active) {
         shootingStar.life++;
@@ -187,7 +188,7 @@ export default function AcidBackground() {
         shootingStar.opacity = 1 - (shootingStar.life / shootingStar.maxLife);
 
         if (shootingStar.life >= shootingStar.maxLife ||
-            shootingStar.x > canvas.width + 100 || shootingStar.y > canvas.height + 100) {
+          shootingStar.x > canvas.width + 100 || shootingStar.y > canvas.height + 100) {
           shootingStar.active = false;
           shootingStar = null;
         } else {
