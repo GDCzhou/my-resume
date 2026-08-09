@@ -17,30 +17,41 @@ body {
 
 /* ===== 打印样式（PDF 导出核心） ===== */
 @media print {
-  /* 隐藏非简历内容 */
+  /* 隐藏非简历内容（工具栏等） */
   .no-print {
     display: none !important;
   }
 
-  /* 页面设置 */
+  /* 页面设置 — A4 无边距 */
   @page {
     size: A4;
     margin: 0;
   }
 
-  body {
+  /* === 关键修复：消除所有灰色背景 === */
+  
+  /* 1. body 必须纯白 */
+  html, body {
     background: white !important;
     padding: 0 !important;
     margin: 0 !important;
   }
 
-  /* A4 容器占满整页 */
+  /* 2. 外层容器（min-h-screen bg-[#eee]）必须纯白 + 去掉 padding */
+  body > div {
+    background: white !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+
+  /* 3. A4 纸容器占满整页，无阴影 */
   .resume {
     width: 210mm !important;
     min-height: 297mm !important;
-    margin: 0 auto !important;
+    margin: 0 !important;
     padding: 16mm 14mm !important;
     box-shadow: none !important;
+    background: white !important;
   }
 
   /* 防止内容跨页断裂 */
