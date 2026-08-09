@@ -8,8 +8,9 @@ export function generateStaticParams() {
   return RESUME_LIST.map(r => ({ type: r.type }));
 }
 
-export default async function ResumePage({ params }: { params: { type: string } }) {
-  const resume = RESUME_LIST.find(r => r.type === params.type);
+export default async function ResumePage({ params }: { params: Promise<{ type: string }> }) {
+  const { type } = await params
+  const resume = RESUME_LIST.find(r => r.type === type);
   if (!resume) {
     notFound();
   }
