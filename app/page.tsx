@@ -121,7 +121,7 @@ export default async function ResumePage({
       {/* A4 纸容器 — 毛玻璃立体效果 + 微妙边框让轮廓清晰可见 */}
       <article
         className={`resume relative z-10 w-[21cm] min-h-[29.7cm] mx-auto
-                   bg-white/[0.05] backdrop-blur-xl 
+                   bg-white/[0.05]
                    border border-white/[0.12] rounded-lg
                    shadow-[0_8px_32px_rgba(0,0,0,0.4),0_0_0_1px_rgba(255,255,255,0.08)_inset]
                    ${hasAvatar ? 'px-[2em] pt-[1.2rem] pb-[1.5rem]' : 'px-[3em] pt-[1.5rem] pb-[1.5rem]'}`}

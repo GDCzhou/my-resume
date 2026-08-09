@@ -17,7 +17,6 @@ body {
 
 /* ===== 屏幕模式：深色星空背景上的浅色文字 + 立体阴影 ===== */
 .resume {
-  /* 整体文字阴影 — 深色投影让文字浮起 */
   text-shadow:
     0 1px 3px rgba(0, 0, 0, 0.7),
     0 0 8px rgba(0, 0, 0, 0.35),
@@ -25,7 +24,6 @@ body {
 }
 
 .resume h1 {
-  /* 姓名大标题 — 更强的立体感 */
   text-shadow:
     0 2px 4px rgba(0, 0, 0, 0.8),
     0 0 12px rgba(0, 0, 0, 0.45),
@@ -33,7 +31,6 @@ body {
 }
 
 .resume h2 {
-  /* 二级标题 — 中等强度 */
   text-shadow:
     0 1px 3px rgba(0, 0, 0, 0.65),
     0 0 8px rgba(0, 0, 0, 0.3);
@@ -41,7 +38,6 @@ body {
 
 .resume h3,
 .resume strong {
-  /* 三级标题和加粗文字 */
   text-shadow:
     0 1px 2px rgba(0, 0, 0, 0.6),
     0 0 5px rgba(0, 0, 0, 0.25);
@@ -50,13 +46,12 @@ body {
 .resume p,
 .resume li,
 .resume td {
-  /* 正文 — 轻微阴影保持可读性 */
   text-shadow:
     0 1px 2px rgba(0, 0, 0, 0.55),
     0 0 4px rgba(0, 0, 0, 0.18);
 }
 
-/* ===== 打印样式（PDF 导出）—— 强制纯白，去掉所有特效 ===== */
+/* ===== 打印样式（PDF 导出）—— 纯白背景 + 深色文字 + 无任何阴影 ===== */
 @media print {
   .no-print {
     display: none !important;
@@ -67,19 +62,20 @@ body {
     margin: 0;
   }
 
-  html, body {
+  html,
+  body {
     background: white !important;
     padding: 0 !important;
     margin: 0 !important;
   }
 
-  body > div {
+  body>div {
     background: white !important;
     padding: 0 !important;
     margin: 0 !important;
   }
 
-  /* A4 纸容器 —— 强制纯白 + 去掉毛玻璃/圆角/阴影/文字阴影 */
+  /* A4 纸容器 —— 纯白无特效 */
   .resume {
     width: 210mm !important;
     min-height: 297mm !important;
@@ -93,15 +89,27 @@ body {
     background: white !important;
   }
 
-  /* 打印时去掉所有文字阴影 */
+  /* 🔑 打印时强制所有文字变深色 + 去掉所有阴影（text-shadow + filter/drop-shadow）*/
   .resume,
   .resume *,
   .resume h1,
   .resume h2,
   .resume h3,
+  .resume h4,
+  .resume h5,
+  .resume p,
+  .resume li,
+  .resume td,
+  .resume th,
   .resume strong,
+  .resume span,
   .resume a {
+    color: #1a1a1a !important;
     text-shadow: none !important;
+    filter: none !important;
+    /* 去掉 drop-shadow 等 CSS filter */
+    -webkit-filter: none !important;
+    /* Safari 兼容 */
   }
 
   /* h2 恢复不透明灰底 */
@@ -111,17 +119,42 @@ body {
     print-color-adjust: exact;
   }
 
-  h2, h3 { break-after: avoid; }
-  li, tr, figure { break-inside: avoid; }
+  .resume h2 {
+    background-color: #e5e7eb !important;
+    border-left-color: #374151 !important;
+    /* ← 深灰替代青色 */
+  }
 
+  .resume,
+  .resume * {
+    color: #1a1a1a !important;
+    text-shadow: none !important;
+    filter: none !important;
+  }
+
+
+  /* 链接打印样式 */
   a[href]::after {
     content: ' (' attr(href) ')';
     font-size: 0.8em;
-    color: #666;
+    color: #666 !important;
   }
+
   a {
     color: inherit !important;
     text-decoration: none !important;
+  }
+
+  /* 分页控制 */
+  h2,
+  h3 {
+    break-after: avoid;
+  }
+
+  li,
+  tr,
+  figure {
+    break-inside: avoid;
   }
 
   * {
