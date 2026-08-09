@@ -3,7 +3,8 @@
 
 const deployNextConfig = {
   output: 'export',
-  basePath: '/my-resume',
+  // GitHub Pages 部署在 /my-resume 子路径；Cloudflare Pages（构建时自动设置 CF_PAGES=1）等平台走根路径
+  basePath: process.env.CF_PAGES ? undefined : '/my-resume',
   images: {
     unoptimized: true
   }
