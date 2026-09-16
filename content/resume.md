@@ -1,5 +1,6 @@
 ---
 name: 周敏
+order: 6
 gender: 男
 age: 29
 position: 前端工程师
