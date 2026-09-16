@@ -2,20 +2,21 @@
 @tailwind components;
 @tailwind utilities;
 
-/* ===== 页面基础样式 ===== */
+/* ===== 页面基础 ===== */
 body {
   background-color: transparent;
   margin: 0;
   padding: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", "Segoe UI", sans-serif;
 }
 
-/* 标题背景色在打印时保留 */
+/* 标题背景色打印时保留 */
 .title {
   -webkit-print-color-adjust: exact;
   print-color-adjust: exact;
 }
 
-/* ===== 屏幕模式：深色星空背景上的浅色文字 + 立体阴影 ===== */
+/* ===== 深色主题（默认） ===== */
 .resume {
   text-shadow:
     0 1px 3px rgba(0, 0, 0, 0.7),
@@ -51,7 +52,124 @@ body {
     0 0 4px rgba(0, 0, 0, 0.18);
 }
 
-/* ===== 打印样式（PDF 导出）—— 纯白背景 + 深色文字 + 无任何阴影 ===== */
+/* ===== 浅色主题 ===== */
+.resume[data-theme="light"] {
+  background: white !important;
+  border-color: #e5e7eb !important;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08) !important;
+  text-shadow: none !important;
+}
+
+.resume[data-theme="light"],
+.resume[data-theme="light"] * {
+  text-shadow: none !important;
+}
+
+.resume[data-theme="light"] h1 {
+  color: #111827 !important;
+  text-shadow: none !important;
+}
+
+.resume[data-theme="light"] h2 {
+  color: #1f2937 !important;
+  background: #f3f4f6 !important;
+  border-left-color: #3b82f6 !important;
+  text-shadow: none !important;
+}
+
+.resume[data-theme="light"] h3 {
+  color: #1f2937 !important;
+  border-bottom-color: #e5e7eb !important;
+  text-shadow: none !important;
+}
+
+.resume[data-theme="light"] h3 span:nth-child(2) {
+  color: #2563eb !important;
+}
+
+.resume[data-theme="light"] h3 span:last-child {
+  color: #6b7280 !important;
+}
+
+.resume[data-theme="light"] h4 {
+  color: #1f2937 !important;
+}
+
+.resume[data-theme="light"] p,
+.resume[data-theme="light"] li {
+  color: #374151 !important;
+}
+
+.resume[data-theme="light"] strong {
+  color: #111827 !important;
+}
+
+.resume[data-theme="light"] header {
+  border-bottom-color: #e5e7eb !important;
+}
+
+.resume[data-theme="light"] .text-cyan-300\/90 {
+  color: #2563eb !important;
+}
+
+.resume[data-theme="light"] .text-white\/55 {
+  color: #6b7280 !important;
+}
+
+.resume[data-theme="light"] .text-white\/70 {
+  color: #6b7280 !important;
+}
+
+.resume[data-theme="light"] .text-white\/80 {
+  color: #4b5563 !important;
+}
+
+.resume[data-theme="light"] .text-white\/85 {
+  color: #374151 !important;
+}
+
+.resume[data-theme="light"] .text-white\/90 {
+  color: #1f2937 !important;
+}
+
+.resume[data-theme="light"] .text-white\/95 {
+  color: #111827 !important;
+}
+
+.resume[data-theme="light"] .bg-white\/\[0\.08\] {
+  background: #f9fafb !important;
+  border-color: #e5e7eb !important;
+  color: #374151 !important;
+}
+
+.resume[data-theme="light"] .border-white\/10 {
+  border-color: #e5e7eb !important;
+}
+
+.resume[data-theme="light"] .border-white\/15 {
+  border-color: #d1d5db !important;
+}
+
+.resume[data-theme="light"] .marker\:text-cyan-400\/60::marker {
+  color: #3b82f6 !important;
+}
+
+.resume[data-theme="light"] a {
+  color: #2563eb !important;
+}
+
+.resume[data-theme="light"] .text-cyan-300 {
+  color: #2563eb !important;
+}
+
+/* 浅色模式下的技能标签 */
+.resume[data-theme="light"] [class*="rounded-full"][class*="bg-white"] {
+  background: #f3f4f6 !important;
+  border-color: #d1d5db !important;
+  color: #374151 !important;
+}
+
+/* ===== 打印样式（PDF 导出） ===== */
 @media print {
   .no-print {
     display: none !important;
@@ -67,20 +185,31 @@ body {
     background: white !important;
     padding: 0 !important;
     margin: 0 !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
   }
 
-  body>div {
+  body > div {
     background: white !important;
     padding: 0 !important;
     margin: 0 !important;
   }
 
-  /* A4 纸容器 —— 纯白无特效 */
+  /* 背景层全部隐藏 */
+  canvas,
+  .light-bg,
+  [class*="Acid"],
+  .acid-background-wrapper {
+    display: none !important;
+  }
+
+  /* A4 纸容器 — 纯净打印版 */
   .resume {
     width: 210mm !important;
     min-height: 297mm !important;
-    margin: 0 auto !important;
-    padding: 16mm 14mm !important;
+    height: auto !important;
+    margin: 0 !important;
+    padding: 14mm 15mm !important;
     box-shadow: none !important;
     border-radius: 0 !important;
     border: none !important;
@@ -89,7 +218,7 @@ body {
     background: white !important;
   }
 
-  /* 🔑 打印时强制所有文字变深色 + 去掉所有阴影（text-shadow + filter/drop-shadow）*/
+  /* 所有文字强制深色，去掉阴影 */
   .resume,
   .resume *,
   .resume h1,
@@ -107,58 +236,119 @@ body {
     color: #1a1a1a !important;
     text-shadow: none !important;
     filter: none !important;
-    /* 去掉 drop-shadow 等 CSS filter */
     -webkit-filter: none !important;
-    /* Safari 兼容 */
   }
 
-  /* h2 恢复不透明灰底 */
+  /* 标题样式 — 打印版更清晰 */
+  .resume h1 {
+    font-size: 22px !important;
+    color: #111827 !important;
+    margin-bottom: 4px !important;
+  }
+
   .resume h2 {
-    background-color: #e5e7eb !important;
-    -webkit-print-color-adjust: exact;
-    print-color-adjust: exact;
+    font-size: 13.5px !important;
+    color: #1f2937 !important;
+    background-color: #f3f4f6 !important;
+    border-left: 4px solid #3b82f6 !important;
+    padding: 4px 0 4px 12px !important;
+    margin-top: 18px !important;
+    margin-bottom: 10px !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
   }
 
-  .resume h2 {
-    background-color: #e5e7eb !important;
-    border-left-color: #374151 !important;
-    /* ← 深灰替代青色 */
+  .resume h3 {
+    font-size: 12.5px !important;
+    color: #1f2937 !important;
+    border-bottom: 1px solid #e5e7eb !important;
+    padding-bottom: 4px !important;
+    margin-top: 14px !important;
+    margin-bottom: 8px !important;
   }
 
-  .resume,
-  .resume * {
-    color: #1a1a1a !important;
-    text-shadow: none !important;
-    filter: none !important;
+  .resume h3 span:nth-child(2) {
+    color: #2563eb !important;
   }
 
-
-  /* 链接打印样式 */
-  a[href]::after {
-    content: ' (' attr(href) ')';
-    font-size: 0.8em;
-    color: #666 !important;
+  .resume h3 span:last-child {
+    color: #6b7280 !important;
+    font-size: 11px !important;
   }
 
-  a {
-    color: inherit !important;
+  .resume h4 {
+    font-size: 12px !important;
+    color: #1f2937 !important;
+    margin-top: 10px !important;
+    margin-bottom: 5px !important;
+  }
+
+  .resume p,
+  .resume li {
+    font-size: 11.5px !important;
+    line-height: 1.75 !important;
+    color: #374151 !important;
+  }
+
+  .resume strong {
+    color: #111827 !important;
+    font-weight: 600 !important;
+  }
+
+  .resume a {
+    color: #2563eb !important;
     text-decoration: none !important;
   }
 
+  /* 技能标签打印样式 */
+  .resume [class*="rounded-full"] {
+    background: #f3f4f6 !important;
+    border: 1px solid #d1d5db !important;
+    color: #374151 !important;
+    font-size: 10.5px !important;
+    padding: 2px 8px !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  /* header 打印样式 */
+  .resume header {
+    border-bottom: 2px solid #3b82f6 !important;
+    padding-bottom: 10px !important;
+    margin-bottom: 10px !important;
+  }
+
   /* 分页控制 */
-  h2,
-  h3 {
-    break-after: avoid;
+  h2 {
+    break-after: avoid !important;
+    page-break-after: avoid !important;
+  }
+
+  h3, h4 {
+    break-after: avoid !important;
+    page-break-after: avoid !important;
   }
 
   li,
   tr,
   figure {
-    break-inside: avoid;
+    break-inside: avoid !important;
+    page-break-inside: avoid !important;
   }
 
-  * {
-    -webkit-print-color-adjust: exact !important;
-    print-color-adjust: exact !important;
+  p {
+    orphans: 3;
+    widows: 3;
+  }
+
+  ul, ol {
+    break-inside: avoid !important;
+    page-break-inside: avoid !important;
+  }
+
+  /* 项目整体尽量不跨页 */
+  .resume h4 + p,
+  .resume h4 + p + p {
+    break-before: avoid !important;
   }
 }
