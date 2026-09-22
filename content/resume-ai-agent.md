@@ -1,5 +1,6 @@
 ---
 name: 酥神
+profile: sushen
 order: 2
 github: github.com/LofiSu
 age: 20
