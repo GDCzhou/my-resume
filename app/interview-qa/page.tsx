@@ -7,9 +7,17 @@ import { markdownComponents } from '../components/ResumeContent';
 
 export const dynamic = 'force-static';
 
+const QA_DIR = path.join(process.cwd(), 'content', 'qa');
+
 export default async function InterviewQaPage() {
-  const filePath = path.join(process.cwd(), 'content', '简历项目面试问答.md');
-  const raw = await fs.readFile(filePath, 'utf-8');
+  const files = (await fs.readdir(QA_DIR)).filter(f => f.endsWith('.md') && f !== 'README.md').sort();
+  const sections = await Promise.all(
+    files.map(async file => {
+      const raw = await fs.readFile(path.join(QA_DIR, file), 'utf-8');
+      return raw;
+    })
+  );
+  const raw = sections.join('\n\n---\n\n');
 
   return (
     <div className="min-h-screen relative py-[2rem]">
