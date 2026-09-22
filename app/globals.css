@@ -165,8 +165,19 @@ body {
 /* 浅色模式下的技能标签 */
 .resume[data-theme="light"] [class*="rounded-full"][class*="bg-white"] {
   background: #f3f4f6 !important;
-  border-color: #d1d5db !important;
+  border: none !important;
   color: #374151 !important;
+}
+
+/* 浅色模式下 header 底边框 */
+.resume[data-theme="light"] header {
+  border-bottom: 1px solid #d1d5db !important;
+  padding-bottom: 10px !important;
+}
+
+/* 浅色模式下表格行底边框去掉，和打印一致 */
+.resume[data-theme="light"] tr {
+  border-bottom: none !important;
 }
 
 /* ===== 打印样式（PDF 导出） ===== */
@@ -209,10 +220,10 @@ body {
     min-height: 297mm !important;
     height: auto !important;
     margin: 0 !important;
-    padding: 14mm 15mm !important;
+    padding: 15mm !important;
     box-shadow: none !important;
     border-radius: 0 !important;
-    border: none !important;
+    border: 1px solid #e5e7eb !important;
     backdrop-filter: none !important;
     -webkit-backdrop-filter: none !important;
     background: white !important;
@@ -241,30 +252,30 @@ body {
 
   /* 标题样式 — 打印版更清晰 */
   .resume h1 {
-    font-size: 22px !important;
+    font-size: 22px !important; /* 与浅色主题一致 */
     color: #111827 !important;
     margin-bottom: 4px !important;
   }
 
   .resume h2 {
-    font-size: 13.5px !important;
+    font-size: 14px !important;
     color: #1f2937 !important;
     background-color: #f3f4f6 !important;
     border-left: 4px solid #3b82f6 !important;
-    padding: 4px 0 4px 12px !important;
-    margin-top: 18px !important;
-    margin-bottom: 10px !important;
+    padding: 6px 0 6px 12px !important;
+    margin-top: 24px !important;
+    margin-bottom: 12px !important;
     -webkit-print-color-adjust: exact !important;
     print-color-adjust: exact !important;
   }
 
   .resume h3 {
-    font-size: 12.5px !important;
+    font-size: 13px !important;
     color: #1f2937 !important;
-    border-bottom: 1px solid #e5e7eb !important;
-    padding-bottom: 4px !important;
-    margin-top: 14px !important;
-    margin-bottom: 8px !important;
+    border-bottom: none !important;
+    padding-bottom: 0 !important;
+    margin-top: 16px !important;
+    margin-bottom: 10px !important;
   }
 
   .resume h3 span:nth-child(2) {
@@ -277,7 +288,7 @@ body {
   }
 
   .resume h4 {
-    font-size: 12px !important;
+    font-size: 12.5px !important;
     color: #1f2937 !important;
     margin-top: 10px !important;
     margin-bottom: 5px !important;
@@ -285,7 +296,7 @@ body {
 
   .resume p,
   .resume li {
-    font-size: 11.5px !important;
+    font-size: 12px !important;
     line-height: 1.75 !important;
     color: #374151 !important;
   }
@@ -300,22 +311,41 @@ body {
     text-decoration: none !important;
   }
 
-  /* 技能标签打印样式 */
+  /* 技能标签打印样式 — 去掉边框，用浅底区分 */
   .resume [class*="rounded-full"] {
     background: #f3f4f6 !important;
-    border: 1px solid #d1d5db !important;
+    border: none !important;
     color: #374151 !important;
-    font-size: 10.5px !important;
+    font-size: 11px !important;
     padding: 2px 8px !important;
     -webkit-print-color-adjust: exact !important;
     print-color-adjust: exact !important;
   }
 
-  /* header 打印样式 */
+  /* header 打印样式 — 底部一条细线，区分个人信息和正文 */
   .resume header {
-    border-bottom: 2px solid #3b82f6 !important;
-    padding-bottom: 10px !important;
-    margin-bottom: 10px !important;
+    border-bottom: none !important;
+    padding-bottom: 4px !important;
+    margin-bottom: 16px !important;
+  }
+
+  /* 打印时半透明边框可能显现为实线，统一处理 */
+  .resume .border-white\/15,
+  .resume .border-white\/\[0\.12\],
+  .resume .ring-white\/10 {
+    border-color: transparent !important;
+    box-shadow: none !important;
+    outline: none !important;
+  }
+
+  /* 表格行底边框去掉，避免横线太多 */
+  .resume tr {
+    border-bottom: none !important;
+  }
+
+  /* hr 也去掉 */
+  .resume hr {
+    display: none !important;
   }
 
   /* 分页控制 */
