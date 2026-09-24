@@ -29,7 +29,8 @@ content/
 │   ├── 10-Java集合与基础八股.md
 │   ├── 11-JVM与性能八股.md
 │   ├── 12-Spring与事务八股.md
-│   └── 13-MySQL与分布式八股.md
+│   ├── 13-MySQL与分布式八股.md
+│   └── 14-框架与中间件八股.md
 └── 简历项目面试问答.md           ← 网站 QA 页数据源（保留）
 ```
 
@@ -50,12 +51,13 @@ content/
 | 11-JVM与性能八股 | OOM排查、GC、JMM、类加载、慢SQL、N+1、缓存三问、分布式锁 | 健康云（性能治理） |
 | 12-Spring与事务八股 | IoC、AOP、@Transactional、传播、循环依赖、自动配置、Bean作用域 | 健康云+认证重构 |
 | 13-MySQL与分布式八股 | MVCC、锁、隔离级别、分库分表、Redis、消息不丢/幂等、分布式事务 | 健康云（核心） |
+| 14-框架与中间件八股 | MyBatis-Plus、#{}vs${}、RocketMQ、Redis、Redisson看门狗、Nacos、Gateway/Feign、MQTT | 健康云+导检 |
 
 ## 面试优先级建议
 
 - **必背**：04-事务一致性与幂等（含 Q1/Q2/Q3/Q4/Q5/Q6）、01-订单与支付体系（Q1/Q2/Q3/Q4/Q5）、03-秒杀（Q1/Q2）
-- **高频**：02-团检（Q1/Q2/Q5）、06-导检（Q1/Q2/Q3）、05（Q1/Q6）、**08-营销（Q1/Q2/Q4/Q5/Q10/Q11）**、**09-Java并发（Q1/Q2/Q3/Q7/Q10）**、**12-Spring（Q3事务自调用/Q4传播）**、**13-MySQL（Q3锁/Q8分布式事务/Q10幂等）**
-- **加分**：07-认证重构（Q4 五元组对拍）、06（Q7 RAG 精排副作用）、08（Q8 规则与维度边界、Q16 企微登录统一）、09（Q3 AtomicReference 无锁读、Q5 COW）、10（Q12 BigDecimal 尾差）、11（Q1 OOM 复盘、Q6 慢SQL 治理）
+- **高频**：02-团检（Q1/Q2/Q5）、06-导检（Q1/Q2/Q3）、05（Q1/Q6）、**08-营销（Q1/Q2/Q4/Q5/Q10/Q11）**、**09-Java并发（Q1/Q2/Q3/Q7/Q10）**、**12-Spring（Q3事务自调用/Q4传播）**、**13-MySQL（Q3锁/Q8分布式事务/Q10幂等）**、**14-框架（Q2 SQL注入/Q4延迟消息/Q8看门狗）**
+- **加分**：07-认证重构（Q4 五元组对拍）、06（Q7 RAG 精排副作用）、08（Q8 规则与维度边界、Q16 企微登录统一）、09（Q3 AtomicReference 无锁读、Q5 COW）、10（Q12 BigDecimal 尾差）、11（Q1 OOM 复盘、Q6 慢SQL 治理）、14（Q3 RocketMQ 存储模型、Q12 MQTT vs RocketMQ）
 
 ## 用法
 
