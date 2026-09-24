@@ -31,6 +31,11 @@ content/
 │   ├── 12-Spring与事务八股.md
 │   ├── 13-MySQL与分布式八股.md
 │   └── 14-框架与中间件八股.md
+├── interview/                    ← 面试宝典（98集 + 3专题，/interview 路由）
+└── interview-suite/              ← 简历定制面试题 + 宝典原文（/interview-suite 路由）
+    ├── 简历定制面试题.md          ← 按简历项目定制的面试题（核心）
+    ├── java/                     ← Java 面试宝典 P01-P98（原文）
+    └── ai/                       ← 大模型面试专题（Agent/RAG/LLM/LangChain）
 └── 简历项目面试问答.md           ← 网站 QA 页数据源（保留）
 ```
 

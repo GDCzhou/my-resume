@@ -136,6 +136,18 @@ export default function Toolbar({ currentType, resumeList }: { currentType: stri
         </svg>
       </Link>
 
+      {/* 简历定制面试题 */}
+      <Link
+        href="/interview-suite"
+        className="w-10 h-10 flex items-center justify-center bg-white rounded-lg shadow-md border border-gray-200 
+                   hover:bg-green-50 hover:border-green-400 active:scale-95 transition-all duration-200 group"
+        title="简历定制面试题"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" className="w-5 h-5 text-gray-500 group-hover:text-green-600 transition-colors duration-200" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.8}>
+          <path strokeLinecap="round" strokeLinejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+        </svg>
+      </Link>
+
       {/* 深浅主题切换 */}
       <button
         onClick={toggleTheme}
