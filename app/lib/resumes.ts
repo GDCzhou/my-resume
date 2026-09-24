@@ -14,7 +14,7 @@ const CONTENT_DIR = path.join(process.cwd(), 'content');
 const PROFILE_DIR = path.join(CONTENT_DIR, 'profile');
 
 // 子目录：归档简历/项目文档/分类QA，不参与简历列表
-const SKIP_SUBDIRS = new Set(['resumes-archive', 'projects', 'qa']);
+const SKIP_SUBDIRS = new Set(['resumes-archive', 'projects', 'qa', 'interview']);
 
 /**
  * 从文件名推导路由 type
